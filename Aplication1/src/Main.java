@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-
+//Убери все лишние строки, конечно ты CodeStyle еще не прошел, но буду приучать сразу
 
         Scanner scanner = new Scanner(System.in);
         StepTracker stepInput = new StepTracker(scanner);
@@ -13,7 +13,7 @@ public class Main {
             printMenu();
             int numberMenu = scanner.nextInt();
 
-                if (numberMenu == 1) {
+                if (numberMenu == 1) { //Если знаешь конструкцию switch - case, то лучше использовать ее
 
                     stepInput.addNewNumbersStepsPerDay();
 
@@ -28,7 +28,7 @@ public class Main {
                 }else if (numberMenu == 4) {
                     scanner.close();
 
-                    break;
+                    break; //Необходимо выходить из программы, а не просто из цикла
                 }
 
                 System.out.println("Такой команды нет");
