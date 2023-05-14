@@ -1,12 +1,13 @@
 
-public class Converter { //убрать лишние строки V
-    float convertStepsToKM(int steps) {
-        return Math.round(steps * 75 / 100000.0);//скобки не нужны ; V  нам интересно округление, а не целое от деления, как вариант можно добавить множители как константы. V
-    }
+public class Converter { 
+    
+    float convertStepsToKM(int steps) {//метод должен возвращать int
+        return Math.round(steps * 75 / 100000.0);//ты неправильно понял: округление должно быть автоматическим при помощи явного преобразования типов, а также лучше сделать
+    }//число 0.00075 вместо деления
 
     int convertStepsToKilokalories(int steps) {
         double constKilokalories = 5 / 100.0;
-        return (int) Math.round((steps * constKilokalories));
+        return (int) Math.round((steps * constKilokalories));//тоже, что и выше
     }
 
 }
