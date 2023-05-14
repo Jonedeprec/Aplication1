@@ -8,7 +8,7 @@ public class Main {
             printMenu();
             int numberMenu = scanner.nextInt();
             switch (numberMenu) {
-                case 1: {
+                case 1: {//Фигурные скобки в кейсах не нужны, код выполняется до ближайшего брейка
                     stepInput.addNewNumbersStepsPerDay();
                     break;
                 }
@@ -26,7 +26,7 @@ public class Main {
                 }
                 default: {
                     System.out.println("Такой команды нет");
-                    break;
+                    break;//в default break не нужен, так как после него не может быть других кейсов
                 }
             }
         }
