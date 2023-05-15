@@ -3,11 +3,10 @@ import java.util.Scanner;
 public class StepTracker {
 
     MonthData[] monthToData;
-    Converter converter;//инициализацию необходимо перенести в конструктор, чтобы не создавались объекты без вызова конструктора V
+    Converter converter;
     Scanner scan;
     int goalByStepsPerDay;
 
-    //Зачем эта переменная, она ни чем не заполняется по ходу программы и передается в методы V
     StepTracker(Scanner scan) {
         monthToData = new MonthData[12];
         converter = new Converter();
@@ -22,47 +21,45 @@ public class StepTracker {
         int newGoal = 0;
         do {
             System.out.println("Введите новую цель шагов :");
-            newGoal = scan.nextInt();//лучше сделать do-while, чтобы добиться правильного введения цели V
-
+            newGoal = scan.nextInt();
         } while (newGoal <= 0);
         goalByStepsPerDay = newGoal;
         System.out.println("Теперь ваша новая цель по шагам в день = " + newGoal);
     }
 
     void addNewNumbersStepsPerDay() {
-        //считывание месяца и дня лучше вынести в отдельные методы,V
         int month = getMonth(scan);
         int days = getDay(scan);
-        int steps = getSteps(scan);//переменная названа также, как глобальная V
-        if (steps >= 0) {
+        int steps = getSteps(scan);
+        if (steps >= 0) {//конструкция if else всегда будет true, так как в методе по получению шагов идет ввод до тех пор, пока не будет >0,
             monthToData[month - 1].days[days - 1] = steps;
             System.out.println(monthToData[month - 1].days[days - 1]);
-        } else {
+        } else {//значит вывод сообщения нужно перенести туда
             System.out.println("Количество шагов неверно");
         }
     }
 
     void printStatistic() {
         System.out.println("Введите номер месяца для получения статистики");
-        int numberMonth = scan.nextInt();
+        int numberMonth = scan.nextInt();//вместо этого у тебя есть готовый метод для ввода месяца
         if (numberMonth >= 1 && numberMonth <= 12) {
 
             System.out.println("Количество пройденных шагов по дням : ");
             monthToData[numberMonth - 1].printDaysAndStepsFromMonth();
 
             System.out.print("Максимальное количество шагов за месяц : ");
-            System.out.println(monthToData[numberMonth - 1].maxSteps());   //не выводится V
+            System.out.println(monthToData[numberMonth - 1].maxSteps());
 
-            System.out.println("Общее количество шагов за месяц : " + monthToData[numberMonth - 1].sumStepsFromMonth());
-
+            System.out.println("Общее количество шагов за месяц : " + monthToData[numberMonth - 1].sumStepsFromMonth());//результат работы этого метода лучше сохранить в 
+//отдельную переменную и добавить ее везде, где есть вызов этого метода, чтобы оптимизировать код, так как метод вызывается несколько раз
             System.out.print("Количество сожженных калорий : ");
-            System.out.println(converter.convertStepsToKilokalories(monthToData[numberMonth - 1].sumStepsFromMonth()));//не выводится V
+            System.out.println(converter.convertStepsToKilokalories(monthToData[numberMonth - 1].sumStepsFromMonth()));//тоже, что и выше
 
-            System.out.println("Вы прошли : " + converter.convertStepsToKM(monthToData[numberMonth - 1].sumStepsFromMonth()) + " километров ");//передается steps, который ничего не содержит V
+            System.out.println("Вы прошли : " + converter.convertStepsToKM(monthToData[numberMonth - 1].sumStepsFromMonth()) + " километров ");//тоже, что и выше
             System.out.println("Лучшая серия : " + monthToData[numberMonth - 1].bestSeries(goalByStepsPerDay));
 
             System.out.print("Среднее количество шагов : ");
-            System.out.println(monthToData[numberMonth - 1].sumStepsFromMonth() / 30);   //нет вывода среднего количества шагов V
+            System.out.println(monthToData[numberMonth - 1].sumStepsFromMonth() / 30);//тоже, что и выше
 
         } else {
             System.out.println("Месяц введен неверно");
@@ -70,7 +67,7 @@ public class StepTracker {
     }
 
     public static int getMonth(Scanner scan) {
-        int month = 0;//так повысится читаемость и не нарушится область ответственности метода
+        int month = 0;
         do {
             System.out.println("Введите месяц от 1 до 12 ");
             month = scan.nextInt();
@@ -82,13 +79,13 @@ public class StepTracker {
         int days = 0;
         do {
             System.out.println("Выберете день от 1 до 30");
-            days = scan.nextInt();//необходимо добиться введения правильного дня, можно использовать do-while V
+            days = scan.nextInt();
         } while (!(days >= 1 && days <= 30));
         return days;
     }
     public static int getSteps (Scanner scan){
         int steps = 0;
-        do { System.out.println("Введите количество шагов");
+        do { System.out.println("Введите количество шагов");//некрасиво писать на одной строке
              steps = scan.nextInt();
         } while (steps <=0);
         return steps;
