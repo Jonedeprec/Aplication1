@@ -33,9 +33,8 @@ public class StepTracker {
         int month = getMonth(scan);
         int days = getDay(scan);
         int steps = getSteps(scan);
-        monthToData[month - 1].days[days - 1] = steps;    //конструкция if else всегда будет true, так как в методе по получению шагов идет ввод до тех пор, пока не будет >0, V
+        monthToData[month - 1].days[days - 1] = steps;
         System.out.println("Введенное количество шагов : " + monthToData[month - 1].days[days - 1]);
-
     }
 
     void printStatistic() {
@@ -49,16 +48,16 @@ public class StepTracker {
         System.out.print("Максимальное количество шагов за месяц : ");
         System.out.println(monthToData[numberMonth - 1].maxSteps());
 
-        System.out.println("Общее количество шагов за месяц : " + rezultOfSumSteps);//результат работы этого метода лучше сохранить в
-//отдельную переменную и добавить ее везде, где есть вызов этого метода, чтобы оптимизировать код, так как метод вызывается несколько раз V
-        System.out.print("Количество сожженных калорий : ");
-        System.out.println(converter.convertStepsToKilokalories(rezultOfSumSteps));//то же, что и выше
+        System.out.println("Общее количество шагов за месяц : " + rezultOfSumSteps);
 
-        System.out.println("Вы прошли : " + converter.convertStepsToKM(rezultOfSumSteps) + " километров ");//то же, что и выше V
+        System.out.print("Количество сожженных калорий : ");
+        System.out.println(converter.convertStepsToKilokalories(rezultOfSumSteps));
+
+        System.out.println("Вы прошли : " + converter.convertStepsToKM(rezultOfSumSteps) + " километров ");
         System.out.println("Лучшая серия : " + monthToData[numberMonth - 1].bestSeries(goalByStepsPerDay));
 
         System.out.print("Среднее количество шагов : ");
-        System.out.println(rezultOfSumSteps / 30);//то же, что и выше V
+        System.out.println(rezultOfSumSteps / 30);
     }
 
     public static int getMonth(Scanner scan) {

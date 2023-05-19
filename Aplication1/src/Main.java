@@ -6,27 +6,25 @@ public class Main {
         StepTracker stepInput = new StepTracker(scanner);
         while (true) {
             printMenu();
+            String num = scanner.nextLine();
+            System.out.println(num);
             int numberMenu = scanner.nextInt();
             switch (numberMenu) {
-                case 1: //Фигурные скобки в кейсах не нужны, код выполняется до ближайшего брейка V
+                case 1:
                     stepInput.addNewNumbersStepsPerDay();
                     break;
-
                 case 2:
                     stepInput.changeStepGoal();
                     break;
-
                 case 3:
                     stepInput.printStatistic();
                     break;
-
                 case 4:
                     scanner.close();
                     return;
-
                 default:
                     System.out.println("Такой команды нет");
-                    //в default break не нужен, так как после него не может быть других кейсов V
+
 
             }
         }
